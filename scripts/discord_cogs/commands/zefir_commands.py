@@ -1,6 +1,8 @@
-
 from discord.ext import commands
-from scripts.managingRolesScript import check_if_it_is_me
+
+
+def check_if_it_is_me(ctx):
+    return True
 
 
 class ZefirCommands(commands.Cog):
