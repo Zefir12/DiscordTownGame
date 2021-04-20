@@ -1,7 +1,7 @@
 import discord
 from scripts.systems.high_level_systems.townManagingSystem import TownManagingSystem as tMS
 from scripts.systems.middle_level_systems.statusesSystem import StatusesSystem as stS
-from scripts.systems.middle_level_systems.peopleSystem import PeopleSystem as pS
+from scripts.systems.low_level_systems.peopleSystem import PeopleSystem as pS
 from scripts.systems.middle_level_systems.stancesSystem import StancesSystem as stnS
 from scripts.systems.middle_level_systems.travelSystem import TravelSystem as tS
 from scripts.systems.middle_level_systems.eventSystem import EventResults

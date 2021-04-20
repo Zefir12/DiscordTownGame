@@ -1,11 +1,11 @@
 from scripts.systems.middle_level_systems.moneySystem import MoneySystem as mS
-from scripts.systems.middle_level_systems.peopleSystem import PeopleSystem as pS
-from scripts.systems.middle_level_systems.statsSystem import StatsSystem as sS
+from scripts.systems.low_level_systems.peopleSystem import PeopleSystem as pS
+from scripts.systems.low_level_systems.statsSystem import StatsSystem as sS
 from scripts.systems.middle_level_systems.travelSystem import TravelSystem as tS
 from scripts.systems.middle_level_systems.inventorySystem import InventorySystem as iS
 from scripts.systems.middle_level_systems.statusesSystem import StatusesSystem as stS
 from scripts.systems.middle_level_systems.stancesSystem import StancesSystem as stanS
-from scripts.systems.utilities.checksFunctions import ChecksFunctionsClass as cFC
+from scripts.systems.utilities.checks_functions import ChecksFunctionsClass as cFC
 
 
 class TownManagingSystem:

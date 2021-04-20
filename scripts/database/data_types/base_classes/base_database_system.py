@@ -1,4 +1,4 @@
-from scripts.systems.low_level_systems.databaseManager import DatabaseManager as dM
+from scripts.database.databaseManager import DatabaseManager as dM
 
 
 class UtilityFunctions:

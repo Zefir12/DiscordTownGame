@@ -1,7 +1,7 @@
-from scripts.systems.low_level_systems.databaseManager import DatabaseManager as dM
-from onlineMongoDB import TownDatabase as tD
-from scripts.systems.utilities.utilityDatatbaseFunctions import UtilityFunctions as uF
-from scripts.data_types.baseDatabaseClass import BaseDatabaseClass
+from scripts.database.databaseManager import DatabaseManager as dM
+from scripts.database.onlineMongoDB import TownDatabase as tD
+from scripts.database.data_types.base_classes.base_database_system import UtilityFunctions as uF
+from scripts.database.data_types.base_classes.base_database_class import BaseDatabaseClass
 
 
 class TownUser(BaseDatabaseClass):

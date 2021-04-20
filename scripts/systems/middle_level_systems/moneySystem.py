@@ -1,6 +1,6 @@
-from scripts.systems.middle_level_systems.peopleSystem import dM, tD, PeopleSystem as pS, TownUser
-from scripts.data_types.baseDatabaseClass import BaseDatabaseClass
-from scripts.systems.utilities.utilityDatatbaseFunctions import UtilityFunctions as uF
+from scripts.systems.low_level_systems.peopleSystem import dM, tD, PeopleSystem as pS, TownUser
+from scripts.database.data_types.base_classes.base_database_class import BaseDatabaseClass
+from scripts.database.data_types.base_classes.base_database_system import UtilityFunctions as uF
 
 
 class Wallet(BaseDatabaseClass):

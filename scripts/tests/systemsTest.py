@@ -1,6 +1,6 @@
-from scripts.systems.low_level_systems.databaseManager import DatabaseManager as tDM
-from onlineMongoDB import TownDatabase as tD
-from scripts.systems.middle_level_systems.peopleSystem import PeopleSystem as pS
+from scripts.database.databaseManager import DatabaseManager as tDM
+from scripts.database.onlineMongoDB import TownDatabase as tD
+from scripts.systems.low_level_systems.peopleSystem import PeopleSystem as pS
 import random
 import time
 

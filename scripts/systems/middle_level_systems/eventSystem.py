@@ -1,11 +1,11 @@
-from scripts.data_types.baseDatabaseClass import BaseDatabaseClass
-from onlineMongoDB import TownDatabase as tD
-from scripts.systems.middle_level_systems.peopleSystem import PeopleSystem as pS
+from scripts.database.data_types.base_classes.base_database_class import BaseDatabaseClass
+from scripts.database.onlineMongoDB import TownDatabase as tD
+from scripts.systems.low_level_systems.peopleSystem import PeopleSystem as pS
 from scripts.systems.middle_level_systems.travelSystem import TravelSystem as tS
-from scripts.systems.middle_level_systems.statsSystem import StatsSystem as sS
-from scripts.systems.utilities.utilityDatatbaseFunctions import UtilityFunctions as uF
-from scripts.systems.middle_level_systems.itemSystem import ItemsPoolSystem, ItemPool
-from scripts.systems.middle_level_systems.inventorySystem import InventorySystem, Inventory
+from scripts.systems.low_level_systems.statsSystem import StatsSystem as sS
+from scripts.database.data_types.base_classes.base_database_system import UtilityFunctions as uF
+from scripts.systems.middle_level_systems.itemSystem import ItemsPoolSystem
+from scripts.systems.middle_level_systems.inventorySystem import InventorySystem
 import random
 
 

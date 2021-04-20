@@ -2,11 +2,11 @@ import discord
 from discord.ext import commands
 
 from scripts.systems.high_level_systems.townManagingSystem import TownManagingSystem as tMS
-from scripts.systems.middle_level_systems.peopleSystem import PeopleSystem as pS
+from scripts.systems.low_level_systems.peopleSystem import PeopleSystem as pS
 from scripts.systems.middle_level_systems.moneySystem import MoneySystem as mS
-from scripts.systems.middle_level_systems.statsSystem import StatsSystem as sS
+from scripts.systems.low_level_systems.statsSystem import StatsSystem as sS
 from scripts.systems.high_level_systems.embedSystem import EmbedSystem as embS
-from scripts.systems.utilities.closeEnoughStringDecoder import return_closest_string
+from scripts.systems.utilities.close_enough_string_decoder import return_closest_string
 
 
 class UserCommands(commands.Cog):
