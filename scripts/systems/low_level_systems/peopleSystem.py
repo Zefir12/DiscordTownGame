@@ -2,31 +2,34 @@ from scripts.database.databaseManager import DatabaseManager as dM
 from scripts.database.onlineMongoDB import TownDatabase as tD
 from scripts.database.data_types.base_classes.base_database_system import UtilityFunctions as uF
 from scripts.database.data_types.base_classes.base_database_class import BaseDatabaseClass
+from pymongo.collection import Collection
+from scripts.database.errors.errors import CannotFindItemInDatabase
 
 
 class TownUser(BaseDatabaseClass):
     def __init__(self, _id):
-        self.discord_nick = ''
-        self.name = ''
-        self._id = _id
-        self.id = _id
-        self.eq_id = -1
-        self.wallet_id = -1
-        self.stats_id = -1
-        self.travel_destination = 0
-        self.travel_time_left = 0
+        self.discord_nick: str = ''
+        self.name: str = ''
+        self.id: int = _id
+        self.eq_id: int = -1
+        self.wallet_id: int = -1
+        self.stats_id: int = -1
+        self.travel_destination: int = 0
+        self.travel_time_left: int = 0
 
 
 class PeopleSystem(uF):
-    _class_template = TownUser
-    _collection = tD.users
+    _class_template: TownUser = TownUser
+    _collection: Collection = tD.users
 
-    @staticmethod
-    def check_if_user_exist(_id):
+    @classmethod
+    def check_if_user_exist(cls, id) -> bool:
         """Returns True if user is in database, False otherwise"""
-        if not dM.get_one(tD.users, {'_id': _id}):
+        try:
+            cls.get_one(id)
+            return True
+        except CannotFindItemInDatabase:
             return False
-        return True
 
     @staticmethod
     def update_user(_id, data):

@@ -1,5 +1,5 @@
 from scripts.systems.middle_level_systems.moneySystem import MoneySystem as mS
-from scripts.systems.low_level_systems.peopleSystem import PeopleSystem as pS
+from scripts.systems.low_level_systems.peopleSystem import PeopleSystem as pS, TownUser
 from scripts.systems.low_level_systems.statsSystem import StatsSystem as sS
 from scripts.systems.middle_level_systems.travelSystem import TravelSystem as tS
 from scripts.systems.middle_level_systems.inventorySystem import InventorySystem as iS
@@ -11,13 +11,13 @@ from scripts.systems.utilities.checks_functions import ChecksFunctionsClass as c
 class TownManagingSystem:
 
     @staticmethod
-    def create_user(_id, nick=None):
-        if pS.create(_id):
-            if nick is not None:
-                pS.update_user(_id, {'discord_nick': nick})
-            sS.create(_id)
-            iS.create(_id)
-            return mS.create_user_wallet(_id)
+    def create_user(id: int, name=None):
+        if pS.create(id):
+            if name is not None:
+                pS.update_user(id, {'discord_nick': name})
+            sS.create(id)
+            iS.create(id)
+            return mS.create_user_wallet(id)
         return False
 
     @staticmethod
@@ -37,7 +37,7 @@ class TownManagingSystem:
 
     @staticmethod
     def get_user_stats(_id):
-        user = pS.get_one(_id)
+        user: TownUser = pS.get_one(_id)
         if user is not False:
             if user.stats_id == -1:
                 pS.update_user(_id, {'stats_id': _id})

@@ -8,6 +8,8 @@ from scripts.systems.low_level_systems.statsSystem import StatsSystem as sS
 from scripts.systems.high_level_systems.embedSystem import EmbedSystem as embS
 from scripts.systems.utilities.close_enough_string_decoder import return_closest_string
 
+from scripts.discord.utilities.checks import check_if_person_in_database
+
 
 class UserCommands(commands.Cog):
 
@@ -115,11 +117,11 @@ class UserCommands(commands.Cog):
         response, error = tMS.transfer_money(ctx, ctx.message.mentions, amount)
         await ctx.send(response)
 
-    @przelej.error
+    """@przelej.error
     async def przelej_error(self, ctx, error):
         print(error)
         if isinstance(error, commands.BadArgument):
-            await ctx.send("Kwota jest niepoprawna")
+            await ctx.send("Kwota jest niepoprawna")"""
 
     @commands.command(pass_context=True)
     async def dodaj_plebsa(self, ctx):
@@ -133,6 +135,14 @@ class UserCommands(commands.Cog):
             else:
                 tMS.create_user(member.id, member.nick)
                 await member.send(f'Zostało Ci nadane obywatelstwo')
+
+    @commands.command(pass_context=True)
+    async def join(self, ctx):
+        if check_if_person_in_database(ctx):
+            await ctx.send(f'Już jesteś obywatelem')
+        else:
+            tMS.create_user(ctx.author.id, ctx.author.name)
+            await ctx.author.send(f'Zostało Ci nadane obywatelstwo')
 
     @commands.command(pass_context=True, aliases=['hajs', 'portfel'])
     async def money(self, ctx):

@@ -23,10 +23,11 @@ def header_text(name):
     print("=========================\n")
 
 
-def tdm_test():
-    header_text('TownDatabaseManager Tests')
-    """First deleting the collection(for safety of test) and creating test data"""
-    tD.test.drop()
+def dm_test():
+    test_db = tD.test_database['test']
+
+    header_text('DatabaseManager Tests')
+
     test_data0 = random.randint(1, 100)
     random_array = []
     random_length = random.randint(10, 190)
@@ -128,5 +129,5 @@ def ps_test():
     delete_user = results('delete_user', not pS.get_one(600), check_if_user_exist)
 
 
-tdm_test()
-ps_test()
+dm_test()
+#ps_test()

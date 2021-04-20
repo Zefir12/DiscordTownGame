@@ -22,20 +22,24 @@ class BaseDatabaseClass:
         return json
 
     def load(self, data: Dict[str, Any]):
+        unknown_keys = []
         for key in data:
             if key not in self._prevent_parameters_from_loading:
                 new_key = key
                 if key in self._change_value_name_during_loading:
                     new_key = self._change_value_name_during_loading[key]
                 if new_key not in self.__dict__ and new_key not in self._prevent_parameters_from_loading:
-                    raise UnknownKeyInDatabase(data, self, message='Unknown key in database')
-                self.__dict__[new_key] = data[key]
+                    unknown_keys.append(new_key)
+                else:
+                    self.__dict__[new_key] = data[key]
+        if unknown_keys:
+            raise UnknownKeyInDatabase(data, self, unknown_keys)
         for key in self.__dict__:
             old_key = key
             if key in self._change_value_name_during_inserting:
                 old_key = self._change_value_name_during_inserting[key]
             if old_key not in data and old_key not in self._prevent_parameters_from_inserting:
-                raise KeyIsMissingInDatabase(data, self, message='Key is missing in database')
+                raise KeysAreMissingInDatabase(data, self)
         return self
 
 
