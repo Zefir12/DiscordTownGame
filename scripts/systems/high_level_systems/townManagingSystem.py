@@ -15,8 +15,11 @@ class TownManagingSystem:
         if pS.create(id):
             if name is not None:
                 pS.update_user(id, {'discord_nick': name})
-            sS.create(id)
-            iS.create(id)
+            if sS.create(id):
+                print('created stats')
+            if iS.create(id):
+                print('created inventory')
+            pS.update_user(id, {'eq_id': id, 'stats_id': id})
             return mS.create_user_wallet(id)
         return False
 
@@ -42,10 +45,10 @@ class TownManagingSystem:
             if user.stats_id == -1:
                 pS.update_user(_id, {'stats_id': _id})
                 sS.create(_id)
-                sS.change_stats_owner(_id, _id)
+                sS.change_owner(_id, _id)
             if sS.get_one(user.stats_id) is False:
                 sS.create(_id)
-                sS.change_stats_owner(_id, _id)
+                sS.change_owner(_id, _id)
             return sS.get_one(user.stats_id)
         return False
 

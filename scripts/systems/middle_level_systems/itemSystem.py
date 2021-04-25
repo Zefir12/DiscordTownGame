@@ -1,6 +1,7 @@
 from scripts.database.data_types.base_classes.base_database_class import BaseDatabaseClass
 from scripts.database.onlineMongoDB import TownDatabase as tD
 from scripts.database.data_types.base_classes.base_database_system import UtilityFunctions as uF
+from scripts.database.errors.errors import CannotFindItemInDatabase
 
 
 item_types = {
@@ -34,9 +35,12 @@ class ItemsSystem(uF):
 
     @classmethod
     def check_if_id_exists(cls, _id: int):
-        if cls.get_one(_id) is not False:
+        try:
+            cls.get_one(_id)
+        except CannotFindItemInDatabase as err:
+            return False
+        else:
             return True
-        return False
 
     @classmethod
     def get_free_id(cls):

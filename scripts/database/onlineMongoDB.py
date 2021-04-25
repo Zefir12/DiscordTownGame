@@ -4,7 +4,7 @@ import pymongo
 class TownDatabase:
     uri = "mongodb+srv://discordtowndb.zifbp.mongodb.net/<dbname>?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority"
     client = pymongo.MongoClient(uri, tls=True, tlsCertificateKeyFile='D:\Programowanie\Github Repositories\DiscordTownGame\certs_and_tokens\X509-cert-7952542027018750515.pem')
-    database = client["TownDatabase"]
+    database = client["DiscordTownDB"]
     test_database = client["test_database"]
     users = database["users"]
     town = database["town"]

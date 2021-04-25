@@ -33,6 +33,7 @@ class CannotFindItemInDatabase(Exception):
         self.item_id = data
         self.object = returned_object
         self.message = message
+        print(f"[{self.message}] -> [Return]: {self.object.__str__()}, [Query]: {self.item_id}")
         super().__init__(self.message)
 
     def __str__(self):

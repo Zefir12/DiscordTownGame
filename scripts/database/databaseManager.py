@@ -66,12 +66,12 @@ class DatabaseManager:
 
     @staticmethod
     def insert_one(collection, data):
-        """Returns True if inserted successfully, False otherwise"""
+        """Returns True if inserted successfully"""
         try:
             return collection.insert_one(data).inserted_id == data['_id']
         except Exception as error:
             print(error)
-            return False
+            raise
 
     @staticmethod
     def insert_many(collection, data):
@@ -80,7 +80,7 @@ class DatabaseManager:
             return collection.insert_many(data).inserted_ids
         except Exception as error:
             print(error)
-            return False
+            raise
 
     @staticmethod
     def increment_one(collection: Collection, query, data):

@@ -30,20 +30,19 @@ class UtilityFunctions:
         return dM.remove_fields(cls._collection, {'_id': id}, fields)
 
     @classmethod
-    def _get_class_instance_from_database(cls, _id: int) -> Union[Any, bool]:
+    def _get_class_instance_from_database(cls, _id: int, _caller_data=None) -> Union[Any, bool]:
         """Returns class instance from database, and actualizes schema, or returns False if something went wrong"""
         try:
-            return cls._get_class_instance_from_database_by_query({'_id': _id})
+            return cls._get_class_instance_from_database_by_query({'_id': _id}, _caller_data=_caller_data)
         except CannotFindItemInDatabase:
             raise
 
     @classmethod
-    def _get_class_instance_from_database_by_query(cls, query: dict) -> Any:
+    def _get_class_instance_from_database_by_query(cls, query: dict, _caller_data=None) -> Any:
         """Returns class instance from database, and actualizes schema, or returns False if something went wrong"""
         try:
             data = dM.get_one(cls._collection, query)
         except CannotFindItemInDatabase as err:
-            print(err)
             raise
         else:
             try:
@@ -91,14 +90,14 @@ class UtilityFunctions:
 
     @classmethod
     def create(cls, _id: int) -> bool:
+        """Returns True if ... []"""
         return cls._insert_class_instance(_id)
 
     @classmethod
-    def get_one(cls, _id: int) -> Union[Any, bool]:
+    def get_one(cls, _id: int, _caller_data=None) -> Union[Any, bool]:
         try:
-            return cls._get_class_instance_from_database(_id)
-        except CannotFindItemInDatabase as err:
-            print(err)
+            return cls._get_class_instance_from_database(_id, _caller_data=_caller_data)
+        except CannotFindItemInDatabase:
             raise
 
     @classmethod

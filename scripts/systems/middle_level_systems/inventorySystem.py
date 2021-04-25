@@ -31,3 +31,7 @@ class InventorySystem(uF):
     @classmethod
     def add_new_item(cls, item_template_id: int, inventory_id: int):
         ItemsSystem.create_from_template(item_template_id, inventory_id)
+
+    @classmethod
+    def change_owner(cls, _id: int, owner_id: int):
+        return cls.update_one(_id, {'owner_id': owner_id})

@@ -26,8 +26,9 @@ class StatsSystem(uF):
     @classmethod
     def update_one_stat(cls, id_or_stats, stat_name, value_to_set):
         """Returns True if successful, False otherwise"""
-        id_or_stats = uF.class_to_id(id_or_stats)
-        return dM.update_one(tD.stats, {'_id': id_or_stats}, {stat_name: value_to_set})
+        id = uF.class_to_id(id_or_stats)
+        return cls.update_one(id, {stat_name: value_to_set})
+        # return dM.update_one(tD.stats, {'_id': id_or_stats}, {stat_name: value_to_set})
 
     @classmethod
     def update_stats(cls, id_or_stats, data_to_update: dict):
@@ -40,5 +41,5 @@ class StatsSystem(uF):
         return dM.increment_one(tD.stats, query, {stat_name: amount})
 
     @classmethod
-    def change_stats_owner(cls, _id: int, owner_id: int):
-        return cls.update_stats(_id, {'owner_id': owner_id})
+    def change_owner(cls, id: int, owner_id: int):
+        return cls.update_one(id, {'owner_id': owner_id})
