@@ -2,6 +2,7 @@ from scripts.database.data_types.base_classes.base_database_class import BaseDat
 from scripts.database.onlineMongoDB import TownDatabase as tD
 from scripts.systems.low_level_systems.peopleSystem import PeopleSystem as pS, TownUser
 from scripts.systems.middle_level_systems.travelSystem import TravelSystem as tS
+from scripts.systems.middle_level_systems.itemSystem import ItemsSystem as iS
 from scripts.systems.low_level_systems.statsSystem import StatsSystem as sS
 from scripts.database.data_types.base_classes.base_database_system import UtilityFunctions as uF
 from scripts.systems.middle_level_systems.itemSystem import ItemsPoolSystem
@@ -30,7 +31,21 @@ class EventResults:
     def __init__(self, user_id):
         self.user_id = user_id
         self.event_name = ''
-        self.received_items_ids = []
+        self.received_items_ids: List[int] = []
+
+    def get_received_item_as_string(self) -> str:
+        items_not_duplicated = {}
+        for id in self.received_items_ids:
+            if id not in items_not_duplicated:
+                items_not_duplicated[id] = 1
+            else:
+                items_not_duplicated[id] += 1
+        string = f''
+        for item in items_not_duplicated:
+            string += f"{iS.get_item_name_from_template_id(item)} x{items_not_duplicated[item]}, "
+        if items_not_duplicated.__len__() == 0:
+            string = 'Nothing'
+        return string
 
 
 class EventSystem(uF):

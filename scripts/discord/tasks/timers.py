@@ -3,11 +3,11 @@ from scripts.systems.high_level_systems.townManagingSystem import TownManagingSy
 from scripts.systems.middle_level_systems.eventSystem import EventSystem as evS
 from scripts.systems.high_level_systems.embedSystem import EmbedSystem as embS
 from scripts.systems.utilities.staticSavedChannelsAndGuilds import town_events_channel, town_events_guild
+from scripts.discord.utilities.discord_bot_stuff import DiscordStuffSystem as dsS
 
 
 class Timers(commands.Cog):
-    def __init__(self, bot):
-        self.bot = bot
+    def __init__(self):
         self.timer_5_s.start()
         self.event_channel = None
 
@@ -24,5 +24,5 @@ class Timers(commands.Cog):
 
     @timer_5_s.before_loop
     async def wait_for_bot(self):
-        await self.bot.wait_until_ready()
-        self.event_channel = await self.bot.fetch_channel(town_events_channel)
+        await dsS.bot.wait_until_ready()
+        self.event_channel = await dsS.get_channel_by_id(town_events_channel)

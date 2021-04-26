@@ -42,12 +42,16 @@ class UserCommands(commands.Cog):
     @commands.command(pass_context=True, aliases=['obywatel', 'statistics'])
     async def stats(self, ctx):
         if ctx.message.mentions.__len__() > 0:
-            tMS.actualize_user(ctx.message.mentions[0].id, ctx.message.mentions[0].nick, ctx.message.mentions[0].name)
+            #tMS.actualize_user(ctx.message.mentions[0].id, ctx.message.mentions[0].nick, ctx.message.mentions[0].name)
             embed = embS.get_embed_for_stats(ctx.message.mentions[0])
         else:
-            tMS.actualize_user(ctx.author.id, ctx.author.nick, ctx.author.name)
+            #tMS.actualize_user(ctx.author.id, ctx.author.nick, ctx.author.name)
             embed = embS.get_embed_for_stats(ctx.author)
         await ctx.send(embed=embed)
+
+    @commands.command(pass_context=True)
+    async def eq(self):
+        pass
 
     @commands.command(pass_context=True)
     async def travel(self, ctx, *args):

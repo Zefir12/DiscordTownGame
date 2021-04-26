@@ -66,8 +66,9 @@ class ItemsSystem(uF):
                                      'name': template_item.name, 'owner_id': inventory_id})
 
     @classmethod
-    def get_item_name_from_id(cls):
-        pass
+    def get_item_name_from_template_id(cls, template_id) -> str:
+        template_item: ItemTemplate = ItemsTemplateSystem.get_one(template_id)
+        return template_item.name
 
 
 class ItemTemplate(BaseDatabaseClass):

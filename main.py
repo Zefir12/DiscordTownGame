@@ -17,7 +17,7 @@ token = TOKENS.discord_bot_token
 bot = BotHolder.bot
 
 bot.add_cog(UserCommands(bot))
-bot.add_cog(Timers(bot))
+bot.add_cog(Timers())
 bot.add_cog(Listeners(bot))
 
 
