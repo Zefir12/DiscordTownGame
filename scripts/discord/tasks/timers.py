@@ -20,7 +20,7 @@ class Timers(commands.Cog):
         if event is not False:
             event_result_list = evS.handle_event(event)
             for event_result in event_result_list:
-                await self.event_channel.send(embed=embS.get_embed_for_event_result(event_result))
+                await self.event_channel.send(embed=await embS.get_embed_for_event_result(event_result))
 
     @timer_5_s.before_loop
     async def wait_for_bot(self):

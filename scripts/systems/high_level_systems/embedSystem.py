@@ -5,6 +5,7 @@ from scripts.systems.low_level_systems.peopleSystem import PeopleSystem as pS
 from scripts.systems.middle_level_systems.stancesSystem import StancesSystem as stnS
 from scripts.systems.middle_level_systems.travelSystem import TravelSystem as tS
 from scripts.systems.middle_level_systems.eventSystem import EventResults
+from scripts.discord.utilities.getting_user_stuff import DiscordStuffSystem as dsS
 
 
 class EmbedSystem:
@@ -42,9 +43,9 @@ class EmbedSystem:
         return embed
 
     @staticmethod
-    def get_embed_for_event_result(event_result: EventResults):
+    async def get_embed_for_event_result(event_result: EventResults):
         embed = discord.Embed(title=f"{event_result.event_name}", colour=discord.Colour(0x3e038c))
-        embed.add_field(name=f"User:", value=f"```{pS.get_one(event_result.user_id).discord_nick}```", inline=True)
+        embed.add_field(name=f"User:", value=f"```{await dsS.get_user_name_by_id(event_result.user_id)}```", inline=True)
         embed.add_field(name=f"Event:", value=f"```{event_result.event_name}```", inline=True)
         embed.add_field(name=f"Items obtained:", value=f"```{event_result.received_items_ids}```", inline=True)
         return embed

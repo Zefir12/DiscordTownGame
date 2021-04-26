@@ -41,7 +41,7 @@ class DatabaseManager:
         """Returns single item, false if found nothing"""
         data = collection.find_one(query)
         if data is None:
-            raise CannotFindItemInDatabase(query, data)
+            raise CannotFindItemInDatabase(query, data, collection.name)
         return data
 
     @staticmethod

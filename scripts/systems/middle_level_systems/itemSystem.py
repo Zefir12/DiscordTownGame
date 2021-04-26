@@ -44,7 +44,7 @@ class ItemsSystem(uF):
 
     @classmethod
     def get_free_id(cls):
-        new_id = cls.get_all().__len__() + 1
+        new_id = cls.get_all().__len__() + 2
         if not cls.check_if_id_exists(new_id):
             return new_id
         for b in range(5):

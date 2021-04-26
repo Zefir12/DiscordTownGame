@@ -1,11 +1,12 @@
 from scripts.database.data_types.base_classes.base_database_class import BaseDatabaseClass
 from scripts.database.onlineMongoDB import TownDatabase as tD
-from scripts.systems.low_level_systems.peopleSystem import PeopleSystem as pS
+from scripts.systems.low_level_systems.peopleSystem import PeopleSystem as pS, TownUser
 from scripts.systems.middle_level_systems.travelSystem import TravelSystem as tS
 from scripts.systems.low_level_systems.statsSystem import StatsSystem as sS
 from scripts.database.data_types.base_classes.base_database_system import UtilityFunctions as uF
 from scripts.systems.middle_level_systems.itemSystem import ItemsPoolSystem
 from scripts.systems.middle_level_systems.inventorySystem import InventorySystem
+from typing import List
 import random
 
 
@@ -117,11 +118,12 @@ class EventSystem(uF):
     @classmethod
     def handle_event(cls, event: Event) -> list:
         """Returns list of [EventResult] objects"""
-        users = cls.get_compatible_users(event)
+        users: List[TownUser] = cls.get_compatible_users(event)
         item_pool_ids = cls.get_item_pools_ids(event)
         list_of_event_results = []
         for user in users:
             event_result = EventResults(user.id)
+            #print(user.name, user.id, user.eq_id)
             event_result.received_items_ids = cls.give_items_to_inventory_from_item_pools_ids(user.eq_id, item_pool_ids)
             event_result.event_name = event.name
             list_of_event_results.append(event_result)

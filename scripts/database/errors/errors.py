@@ -29,12 +29,13 @@ class UnknownKeyInDatabase(Exception):
 
 
 class CannotFindItemInDatabase(Exception):
-    def __init__(self, data: Dict[str, Any], returned_object: Any, message='Cannot find item in the database'):
+    def __init__(self, data: Dict[str, Any], returned_object: Any, collection: str, message='Cannot find item in the database'):
         self.item_id = data
         self.object = returned_object
         self.message = message
-        print(f"[{self.message}] -> [Return]: {self.object.__str__()}, [Query]: {self.item_id}")
+        self.coll = collection
+        #print(f"[{self.message}] -> [Return]: {self.object.__str__()}, [Query]: {self.item_id}, [Collection]: {self.coll}")
         super().__init__(self.message)
 
     def __str__(self):
-        return f"[{self.message}] -> [Return]: {self.object.__str__()}, [Query]: {self.item_id}"
+        return f"[{self.message}] -> [Return]: {self.object.__str__()}, [Query]: {self.item_id}, [Collection]: {self.coll}"
