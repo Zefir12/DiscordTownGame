@@ -11,6 +11,11 @@ from scripts.discord.utilities.discord_bot_stuff import DiscordStuffSystem as ds
 class EmbedSystem:
 
     @staticmethod
+    def get_embed_for_inventory():
+        embed = discord.Embed(title="Inventory", colour=discord.Colour(0x3e038c))
+        return embed
+
+    @staticmethod
     def get_embed_for_statuses():
         statuses_list = tMS.get_possible_statuses()
         embed = discord.Embed(title="Statusy", colour=discord.Colour(0x3e038c))

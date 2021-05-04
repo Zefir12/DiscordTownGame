@@ -50,8 +50,8 @@ class UserCommands(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(pass_context=True)
-    async def eq(self):
-        pass
+    async def eq(self, ctx):
+        await ctx.send('`')
 
     @commands.command(pass_context=True)
     async def travel(self, ctx, *args):

@@ -26,6 +26,7 @@ class Item(BaseDatabaseClass):
         self.type_reference = -1
         self.name = 'None'
         self.amount = 1
+        self.max_amount = 1
         self.storage = 0
 
 
@@ -61,9 +62,9 @@ class ItemsSystem(uF):
     def create_from_template(cls, template_id: int, inventory_id: int):
         new_item_id = cls.get_free_id()
         cls.create(new_item_id)
-        template_item = ItemsTemplateSystem.get_one(template_id)
+        template_item: ItemTemplate = ItemsTemplateSystem.get_one(template_id)
         cls.update_one(new_item_id, {'type': template_item.type, 'type_reference': template_item.type_reference,
-                                     'name': template_item.name, 'owner_id': inventory_id})
+                                     'name': template_item.name, 'owner_id': inventory_id, 'max_amount': template_item.max_amount})
 
     @classmethod
     def get_item_name_from_template_id(cls, template_id) -> str:
@@ -77,6 +78,8 @@ class ItemTemplate(BaseDatabaseClass):
         self.id = _id
         self.type = 0
         self.type_reference = -1
+        self.amount = 1
+        self.max_amount = 1
         self.name = 'None'
 
 
